@@ -2,20 +2,36 @@ import React from 'react';
 import Counter from '../containers/Counter';
 import AddCounter from '../containers/AddCounter';
 import RemoveCounter from '../containers/RemoveCounter';
+import { connect } from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as CounterActions from '../actions';
 
-const App = () => {
+const App = (props) => {
   return (
     <div className="container">
-      <Counter></Counter><br />
+      <Counter count={props.count}></Counter><br />
       <div className="columns">
         <div className="column is-11">
-          <AddCounter></AddCounter>
+          <AddCounter add={props.actions.addCounter}></AddCounter>
         </div>
         <div className="column auto">
-          <RemoveCounter></RemoveCounter>
+          <RemoveCounter remove={props.actions.removeCounter}></RemoveCounter>
         </div>
       </div>
       </div>
   )
 }
-export default App;
+
+function mapStateToProps(state, ownProps){
+  return {
+    count: state.counterReducer
+  }
+}
+
+function mapDispatchToProps(dispatch){
+  return {
+    actions: bindActionCreators(CounterActions, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

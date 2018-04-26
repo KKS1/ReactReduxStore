@@ -17,9 +17,5 @@ class Counter extends Component {
     )
   }
 }
-function mapStateToProps(state){
-  return {
-    count: state.counterReducer,
-  };
-}
-export default connect(mapStateToProps)(Counter);
+
+export default Counter;

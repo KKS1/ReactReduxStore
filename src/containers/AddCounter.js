@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { addCounter } from '../actions';
-import { bindActionCreators } from 'redux';
 
 class AddCounter extends Component {
   constructor(props) {
@@ -13,7 +10,7 @@ class AddCounter extends Component {
             <form>
               <div className="field is-grouped">
                 <div className="control">
-                  <button className="button is-primary" onClick={(e) => {e.preventDefault();this.props.dispatch(addCounter())}}>Add</button>
+                  <button className="button is-primary" onClick={(e) => {e.preventDefault();this.props.add()}}>Add</button>
                 </div>
               </div>
             </form>
@@ -21,7 +18,5 @@ class AddCounter extends Component {
      )
    }
 }
-function mapDispatchToProps(dispatch) {
-  return { actions: bindActionCreators(addCounter, dispatch) }
-}
-export default connect(mapDispatchToProps)(AddCounter);
+
+export default AddCounter;
